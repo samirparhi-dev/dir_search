@@ -1,5 +1,5 @@
 use std::fs;
-use std::io;
+use std::io::{self, Read};
 use walkdir::WalkDir;
 
 fn search_string(dir: &str, string: &str) -> Result<(), std::io::Error> {
@@ -22,18 +22,21 @@ fn search_string(dir: &str, string: &str) -> Result<(), std::io::Error> {
 fn main() -> Result<(), std::io::Error> {
     // Prompt the user to enter the directory path
     println!("Enter the directory path:");
-    let mut dir = String::new();
-    io::stdin().read_line(&mut dir)?;
-    let dir = dir.trim(); // Trim whitespace and newline characters
+    let dir = read_input()?;
 
     // Prompt the user to enter the search string
     println!("Enter the string to search:");
-    let mut string_to_find = String::new();
-    io::stdin().read_line(&mut string_to_find)?;
-    let string_to_find = string_to_find.trim(); // Trim whitespace and newline characters
+    let string_to_find = read_input()?;
 
     // Call the search_string function with user-provided inputs
-    search_string(dir, string_to_find)?;
+    search_string(&dir, &string_to_find)?;
 
     Ok(())
+}
+
+fn read_input() -> Result<String, io::Error> {
+    let mut buffer = Vec::new();
+    io::stdin().read_to_end(&mut buffer)?;
+    let input = String::from_utf8_lossy(&buffer);
+    Ok(input.trim().to_string())
 }
