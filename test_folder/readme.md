@@ -1,12 +1,8 @@
- <h2>⚠️ All About this Program</h2>
+ <h2>ℹ️ All About this Program</h2>
 
  Tis is a simple program to search a given `string` in the `directory` Recursively. Below are few fact about this program.
 
-<h3> Major Limitations</h3>
-    1. It can only search strings in the utf-8 format. That means if you have image , pdf  etc it can not check it.
-    2. You have to provide absolute path of the directory where you want to search it.
 
-<h3> Minor Limitations</h3>
 
 <h3> Test Case Outlines:</h3>
 
@@ -30,3 +26,9 @@
 6. Symbolic Link are not being checked
 
 >> <h4>Above TestCase Scenarios are under Development and will be reflected here soon.</h4>
+
+<h3>Limitations:</h3>
+
+1. It can only search strings in the utf-8 format. That means if you have image , pdf  etc it can not check it.
+
+2. You have to provide absolute path of the directory where you want to search it.
