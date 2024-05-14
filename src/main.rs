@@ -45,8 +45,11 @@ fn main() -> io::Result<()> {
     let mut pattern = String::new();
 
     println!("Enter the directory path to search in:");
-    io::stdout().flush()?; // Ensure the prompt is displayed
+
+    io::stdout().flush()?;
+
     io::stdin().read_line(&mut dir)?;
+
     let dir = dir.trim(); 
 
     let dir_path = PathBuf::from(dir);
@@ -58,10 +61,9 @@ fn main() -> io::Result<()> {
         ));
     }
     println!("Enter the search string:");
-    io::stdout().flush()?; // Ensure the prompt is displayed
+    io::stdout().flush()?;
     io::stdin().read_line(&mut pattern)?;
-    let pattern = pattern.trim(); // Remove any trailing newline characters
-
+    let pattern = pattern.trim();
     search_folder_recursively(Path::new(dir), pattern)?;
 
     Ok(())
