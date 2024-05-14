@@ -5,6 +5,16 @@ use std::io::{self, BufRead, Write};
 use std::path::Path;
 use std::path::PathBuf;
 
+//For concurrency
+use std::sync::mpsc;
+use std::thread;
+
+struct SearchResult {
+    file_path: String,
+    line_number: usize,
+    line_content: String,
+}
+//fn search_inside_file(file_path: &Path, search_pattern: &Regex, sender: mpsc::Sender<SearchResult>)
 fn search_inside_file(file_path: &Path, search_pattern: &Regex) -> io::Result<()> {
     let file = fs::File::open(file_path)?;
     let reader = io::BufReader::new(file);
@@ -23,7 +33,7 @@ fn search_inside_file(file_path: &Path, search_pattern: &Regex) -> io::Result<()
 
     Ok(())
 }
-
+//fn search_folder_recursively(dir: &Path, pattern: &str, sender: mpsc::Sender<SearchResult>)
 fn search_folder_recursively(dir: &Path, pattern: &str) -> io::Result<()> {
     let search_pattern = Regex::new(pattern).expect("Invalid regex pattern");
 
@@ -65,6 +75,27 @@ fn main() -> io::Result<()> {
     io::stdin().read_line(&mut pattern)?;
     let pattern = pattern.trim();
     search_folder_recursively(Path::new(dir), pattern)?;
+
+    // Concurrency to be implemented
+    // // A channel for sending search results
+    // let (sender, receiver) = mpsc::channel();
+    // // Spawn a thread to collect search results and print them
+    // let handle = thread::spawn(move || {
+    //     for result in receiver {
+    //         println!(
+    //             "Match found in file {} at line {}: {}",
+    //             result.file_path,
+    //             result.line_number,
+    //             result.line_content
+    //         );
+    //     }
+    // });
+    // // Start the directory search
+    // search_folder_recursively(Path::new(dir), pattern, sender)?;
+
+    // // Wait for the thread to finish
+    // handle.join().expect("Failed to join thread");
+
 
     Ok(())
 }
