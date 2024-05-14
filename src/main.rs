@@ -20,20 +20,16 @@ fn search_string(dir: &str, string: &str) -> Result<(), std::io::Error> {
 }
 
 fn main() -> Result<(), std::io::Error> {
-    // Prompt the user to enter the directory path
+
     println!("Enter the directory path:");
     let mut dir = String::new();
     io::stdin().read_line(&mut dir)?;
-    let dir = dir.trim(); // Trim whitespace and newline characters
+    let dir = dir.trim();
 
-    // Prompt the user to enter the search string
     println!("Enter the string to search:");
     let mut string_to_find = String::new();
     io::stdin().read_line(&mut string_to_find)?;
-    let string_to_find = string_to_find.trim(); // Trim whitespace and newline characters
-
-    // Call the search_string function with user-provided inputs
+    let string_to_find = string_to_find.trim();
     search_string(dir, string_to_find)?;
-
     Ok(())
 }
