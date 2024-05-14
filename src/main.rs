@@ -76,7 +76,7 @@ fn main() -> io::Result<()> {
     let pattern = pattern.trim();
     search_folder_recursively(Path::new(dir), pattern)?;
 
-    // Concurrency to be implemented
+    // Multithreading and Concurrency to be implemented
     // // A channel for sending search results
     // let (sender, receiver) = mpsc::channel();
     // // Spawn a thread to collect search results and print them
