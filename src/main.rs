@@ -5,16 +5,17 @@ use std::io::{self, BufRead, Write};
 use std::path::Path;
 use std::path::PathBuf;
 
-//For concurrency
-use std::sync::mpsc;
-use std::thread;
+//For Multi threading
+// use std::sync::mpsc;
+// use std::thread;
 
-struct SearchResult {
-    file_path: String,
-    line_number: usize,
-    line_content: String,
-}
+// struct SearchResult {
+//     file_path: String,
+//     line_number: usize,
+//     line_content: String,
+// }
 //fn search_inside_file(file_path: &Path, search_pattern: &Regex, sender: mpsc::Sender<SearchResult>)
+
 fn search_inside_file(file_path: &Path, search_pattern: &Regex) -> io::Result<()> {
     let file = fs::File::open(file_path)?;
     let reader = io::BufReader::new(file);
